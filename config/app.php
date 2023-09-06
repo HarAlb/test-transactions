@@ -159,7 +159,7 @@ return [
         /*
          * Package Service Providers...
          */
-
+        \App\Task\Entity\Transaction\Providers\TransactionServiceProvider::class,
         /*
          * Application Service Providers...
          */
