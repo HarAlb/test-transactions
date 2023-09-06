@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Models;
+namespace App\Task\Entity\User\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Database\Factories\UserFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -21,6 +21,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'balance'
     ];
 
     /**
@@ -42,4 +43,16 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    /**
+     * Create a new factory instance for the model.
+     *
+     * @return \Illuminate\Database\Eloquent\Factories\Factory
+     */
+    protected static function newFactory(): \Illuminate\Database\Eloquent\Factories\Factory|UserFactory
+    {
+        $userFactory = new UserFactory;
+        $userFactory::guessModelNamesUsing(fn() => 'App\Task\Entity\User\Models\User');
+        return $userFactory;
+    }
 }

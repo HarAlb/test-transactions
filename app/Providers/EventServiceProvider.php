@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Task\Entity\Transaction\Events\StoredTransactionEvent;
+use App\Task\Entity\Transaction\Listeners\TransactionApprove;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -18,6 +20,10 @@ class EventServiceProvider extends ServiceProvider
         Registered::class => [
             SendEmailVerificationNotification::class,
         ],
+
+        StoredTransactionEvent::class => [
+            TransactionApprove::class
+        ]
     ];
 
     /**
